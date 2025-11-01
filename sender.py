@@ -98,7 +98,18 @@ def send_emails(customers, smtp_config, build_func, image_path, custom_delay=Non
                 stats['sent'] += 1
                 
                 emails_in_last_hour = len([ts for ts in sent_timestamps if sent_time - ts < HOUR_IN_SECONDS])
-                print(f"[{i}/{stats['total']}] Sent to {customer.get('name', 'N/A')} ({customer['email']}) - took {email_duration:.2f}s (rate: {emails_in_last_hour}/{RATE_LIMIT} emails/hour)")
+                # Format customer name from vorname/nachname
+                vorname = customer.get('vorname', '')
+                nachname = customer.get('nachname', '')
+                if vorname and nachname:
+                    display_name = f"{vorname} {nachname}"
+                elif vorname:
+                    display_name = vorname
+                elif nachname:
+                    display_name = nachname
+                else:
+                    display_name = 'N/A'
+                print(f"[{i}/{stats['total']}] Sent to {display_name} ({customer['email']}) - took {email_duration:.2f}s (rate: {emails_in_last_hour}/{RATE_LIMIT} emails/hour)")
             
             except Exception as e:
                 stats['failed'] += 1

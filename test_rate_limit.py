@@ -18,7 +18,13 @@ from email_builder import build_email
 def create_test_customers(count=5):
     """Create test customer data."""
     return [
-        {'email': f'test{i}@example.com', 'name': f'Test User {i}', 'gender': 'Mann' if i % 2 == 0 else 'Frau'}
+        {
+            'email': f'test{i}@example.com',
+            'vorname': f'Test{i}',
+            'nachname': f'User{i}',
+            'anrede': 'Herr' if i % 2 == 0 else 'Frau',
+            'du': 'sie' if i % 2 == 0 else 'du'  # Alternate between sie and du
+        }
         for i in range(1, count + 1)
     ]
 

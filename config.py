@@ -14,8 +14,10 @@ DELAY_SECONDS = 3600 / EMAILS_PER_HOUR  # 36 seconds per email
 # CSV column mapping
 # Change these to match your CSV column names
 COLUMN_MAP = {
-    'email': 'email',    # Column name in CSV for email address
-    'name': 'name',      # Column name in CSV for customer name
-    'gender': 'gender'   # Column name in CSV for gender
+    'email': 'email',        # Column name in CSV for email address
+    'vorname': 'vorname',    # Column name in CSV for first name
+    'nachname': 'nachname',  # Column name in CSV for last name
+    'anrede': 'anrede',      # Column name in CSV for salutation (Herr/Frau)
+    'du': 'du'              # Column name in CSV for formality (sie/du)
 }
 

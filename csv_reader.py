@@ -13,11 +13,11 @@ def read_customers(csv_path, column_map):
     Args:
         csv_path: Path to CSV file
         column_map: Dictionary mapping standard fields to CSV column names
-                   e.g., {'email': 'email', 'name': 'name', 'gender': 'gender'}
+                   e.g., {'email': 'email', 'vorname': 'vorname', 'nachname': 'nachname', 'anrede': 'anrede', 'du': 'du'}
     
     Returns:
         List of dictionaries, each containing customer data with standardized keys
-        e.g., [{'email': '...', 'name': '...', 'gender': '...'}, ...]
+        e.g., [{'email': '...', 'vorname': '...', 'nachname': '...', 'anrede': '...', 'du': '...'}, ...]
     """
     try:
         # Read CSV file

@@ -30,7 +30,17 @@ def test_main_workflow():
     # Show sample customers
     print("\nSample customers:")
     for i, customer in enumerate(customers[:3], 1):
-        print(f"  {i}. {customer.get('name', 'N/A')} ({customer.get('email', 'N/A')})")
+        vorname = customer.get('vorname', '')
+        nachname = customer.get('nachname', '')
+        if vorname and nachname:
+            display_name = f"{vorname} {nachname}"
+        elif vorname:
+            display_name = vorname
+        elif nachname:
+            display_name = nachname
+        else:
+            display_name = 'N/A'
+        print(f"  {i}. {display_name} ({customer.get('email', 'N/A')})")
     
     print()
     
@@ -51,7 +61,10 @@ def test_main_workflow():
     
     try:
         msg = build_email(test_customer, IMAGE_FILE_PATH, sender_email)
-        print(f"[PASS] Email built successfully for {test_customer.get('name', 'N/A')}")
+        vorname = test_customer.get('vorname', '')
+        nachname = test_customer.get('nachname', '')
+        display_name = f"{vorname} {nachname}".strip() if (vorname or nachname) else 'N/A'
+        print(f"[PASS] Email built successfully for {display_name}")
         print(f"  To: {msg['To']}")
         print(f"  Subject: {msg['Subject']}")
         print()
